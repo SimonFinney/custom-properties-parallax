@@ -4,23 +4,33 @@
   "description": "Parallax effect using custom properties",
   "main": "lib/index.js",
   "scripts": {
-    "build": "webpack",
+    "clean": "del-cli lib",
+    "build": "yarn clean && webpack",
+    "precommit": "lint-staged",
     "test": "echo 'Error: no test specified'"
   },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/SimonFinney/custom-properties-parallax.git"
   },
-  "keywords": ["css", "custom", "properties", "parallax"],
+  "keywords": [
+    "css",
+    "custom",
+    "properties",
+    "parallax"
+  ],
   "author": "Simon Finney <simonjfinney@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/SimonFinney/custom-properties-parallax/issues"
   },
-  "homepage":
-    "https://github.com/SimonFinney/custom-properties-parallax#readme",
+  "homepage": "https://github.com/SimonFinney/custom-properties-parallax#readme",
   "devDependencies": {
     "@babel/preset-env": "^7.0.0-beta.42",
+    "del-cli": "^1.1.0",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.0.0",
+    "prettier": "^1.11.1",
     "webpack": "^4.1.1",
     "webpack-cli": "^2.0.12"
   }
