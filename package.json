@@ -2,38 +2,49 @@
   "name": "custom-properties-parallax",
   "version": "0.1.0",
   "description": "Parallax effect using custom properties",
-  "main": "lib/index.js",
+  "main": "dist/custom-properties-parallax.js",
   "scripts": {
-    "clean": "del-cli lib",
-    "build": "yarn clean && webpack",
-    "format": "prettier --write '**/*.js'",
-    "lint": "eslint ./src/**/*.js",
+    "commitmsg": "validate-commit-msg",
+    "build": "webpack --mode production",
+    "format": "prettier '**/*.js' --write",
+    "lint": "eslint '**/*.js'",
     "precommit": "lint-staged",
-    "test": "echo 'Error: no test specified'"
+    "prepublishOnly": "yarn build",
+    "semantic-release": "semantic-release",
+    "start": "webpack-dev-server --env.development --mode development --open",
+    "test": "yarn format && yarn lint"
   },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/SimonFinney/custom-properties-parallax.git"
   },
-  "keywords": ["css", "custom", "properties", "parallax"],
+  "keywords": [
+    "css",
+    "custom",
+    "properties",
+    "parallax"
+  ],
   "author": "Simon Finney <simonjfinney@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/SimonFinney/custom-properties-parallax/issues"
   },
-  "homepage":
-    "https://github.com/SimonFinney/custom-properties-parallax#readme",
+  "homepage": "https://github.com/SimonFinney/custom-properties-parallax#readme",
   "devDependencies": {
     "@babel/preset-env": "^7.0.0-beta.42",
-    "del-cli": "^1.1.0",
+    "clean-webpack-plugin": "^0.1.19",
     "eslint": "^4.19.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-import": "^2.9.0",
+    "html-webpack-plugin": "^3.0.7",
     "husky": "^0.14.3",
     "lint-staged": "^7.0.0",
     "prettier": "^1.11.1",
+    "validate-commit-msg": "^2.14.0",
     "webpack": "^4.1.1",
-    "webpack-cli": "^2.0.12"
-  }
+    "webpack-cli": "^2.0.12",
+    "webpack-dev-server": "^3.1.1"
+  },
+  "dependencies": {}
 }

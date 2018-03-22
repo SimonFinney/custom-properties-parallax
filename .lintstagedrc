@@ -1,3 +1,1 @@
-{
-  "*.js": ["format", "lint"]
-}
+{ "*.js": "yarn test" }

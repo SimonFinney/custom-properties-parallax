@@ -1,0 +1,10 @@
+language: node_js
+
+cache:
+  yarn: true
+  directories:
+  - node_modules
+
+after_success: yarn semantic-release
+
+before_deploy: yarn build
