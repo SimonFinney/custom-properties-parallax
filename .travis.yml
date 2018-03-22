@@ -6,5 +6,3 @@ cache:
   - node_modules
 
 after_success: yarn semantic-release
-
-before_deploy: yarn build
