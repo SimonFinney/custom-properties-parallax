@@ -21,14 +21,15 @@ const paths = new function paths() {
  * Exports the webpack configuration for the library.
  * @param {Object.<string, boolean>} env Environment variables defined in the package manifest.
  */
-module.exports = env => ({
-  devtool: env && env.development && 'cheap-module-eval-source-map',
+module.exports = ({ development } = false) => ({
+  devtool: development && 'cheap-module-eval-source-map',
   plugins: [
     new CleanWebpackPlugin([paths.dist]),
-    new HtmlWebpackPlugin({
-      template: path.resolve(paths.src, 'index.html'),
-      title: packageName,
-    }),
-  ],
+    development &&
+      new HtmlWebpackPlugin({
+        template: path.resolve(paths.src, 'index.html'),
+        title: packageName,
+      }),
+  ].filter(Boolean),
   output: { filename: `${packageName}.js` },
 });
