@@ -18,18 +18,14 @@
     "type": "git",
     "url": "https://github.com/SimonFinney/custom-properties-parallax.git"
   },
-  "keywords": [
-    "css",
-    "custom",
-    "properties",
-    "parallax"
-  ],
+  "keywords": ["css", "custom", "properties", "parallax"],
   "author": "Simon Finney <simonjfinney@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/SimonFinney/custom-properties-parallax/issues"
   },
-  "homepage": "https://github.com/SimonFinney/custom-properties-parallax#readme",
+  "homepage":
+    "https://github.com/SimonFinney/custom-properties-parallax#readme",
   "devDependencies": {
     "@babel/preset-env": "^7.0.0-beta.42",
     "@commitlint/cli": "^6.1.3",
@@ -49,7 +45,6 @@
     "webpack-dev-server": "^3.1.1"
   },
   "dependencies": {},
-  "files": [
-    "dist"
-  ]
+  "files": ["dist"],
+  "browserslist": ["> 1%", "Last 2 versions"]
 }
