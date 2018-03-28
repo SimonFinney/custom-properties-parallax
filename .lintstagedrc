@@ -1,1 +1,6 @@
-{ "*.js": "yarn test" }
+{ 
+  "*.js": [
+    "yarn format",
+    "yarn test"
+    ] 
+  }
