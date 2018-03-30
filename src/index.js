@@ -3,7 +3,9 @@
  * @author Simon Finney <simonjfinney@gmail.com>
  */
 
-import parallax from './parallax';
+import { create, init } from './parallax';
 
 // Runs the `parallax` method when the DOM content has loaded.
-document.addEventListener('DOMContentLoaded', parallax);
+document.addEventListener('DOMContentLoaded', init);
+
+export { create };

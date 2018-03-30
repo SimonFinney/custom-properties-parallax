@@ -3,7 +3,7 @@
  * @author Simon Finney <simonjfinney@gmail.com>
  */
 
-import constants from './constants';
+import { CUSTOM_PROPERTIES, DEFAULT_VALUES, NAMESPACE } from './constants';
 
 /**
  * Checks for and otherwise sets default custom properties to the root element.
@@ -11,51 +11,53 @@ import constants from './constants';
  */
 function setDefaultProperty(property) {
   const { documentElement } = document;
-  const customProperty = constants.CUSTOM_PROPERTIES[property];
+  const customProperty = CUSTOM_PROPERTIES[property];
 
   if (
     window
       .getComputedStyle(documentElement)
       .getPropertyValue(customProperty) === ''
   ) {
-    documentElement.style.setProperty(
-      customProperty,
-      constants.DEFAULT_VALUES[property]
-    );
+    documentElement.style.setProperty(customProperty, DEFAULT_VALUES[property]);
   }
 }
 
 /**
- * Finds all of the elements declared as parallax elements and attaches the parallax handler to them.
+ * Attaches the parallax handler to a specific element.
+ * @param {HTMLElement} parallaxElement The element to attach the parallax handler to.
  */
-export default function parallax() {
+function create(parallaxElement) {
   const w = window;
-  const d = document;
 
-  Object.keys(constants.DEFAULT_VALUES).forEach(defaultProperty =>
+  parallaxElement.style.setProperty(
+    'transform',
+    `translate3d(0, calc(var(${CUSTOM_PROPERTIES.PARALLAX}) * var(${
+      CUSTOM_PROPERTIES.MODIFIER
+    })), 0)`
+  );
+
+  parallaxElement.style.setProperty('will-change', 'transform');
+
+  w.addEventListener('scroll', () => {
+    parallaxElement.style.setProperty(
+      CUSTOM_PROPERTIES.PARALLAX,
+      document.documentElement.scrollTop *
+        w
+          .getComputedStyle(parallaxElement)
+          .getPropertyValue(CUSTOM_PROPERTIES.SPEED)
+    );
+  });
+}
+
+/**
+ * Finds all of the elements declared as parallax elements and creates a parallax handler to each of them.
+ */
+function init() {
+  Object.keys(DEFAULT_VALUES).forEach(defaultProperty =>
     setDefaultProperty(defaultProperty)
   );
 
-  d.querySelectorAll(`[data-${constants.NAMESPACE}]`).forEach(element => {
-    const parallaxElement = element;
-
-    parallaxElement.style.setProperty(
-      'transform',
-      `translate3d(0, calc(var(${constants.CUSTOM_PROPERTIES.PARALLAX}) * var(${
-        constants.CUSTOM_PROPERTIES.MODIFIER
-      })), 0)`
-    );
-
-    parallaxElement.style.setProperty('will-change', 'transform');
-
-    w.addEventListener('scroll', () => {
-      parallaxElement.style.setProperty(
-        constants.CUSTOM_PROPERTIES.PARALLAX,
-        d.documentElement.scrollTop *
-          w
-            .getComputedStyle(parallaxElement)
-            .getPropertyValue(constants.CUSTOM_PROPERTIES.SPEED)
-      );
-    });
-  });
+  document.querySelectorAll(`[data-${NAMESPACE}]`).forEach(create);
 }
+
+export { create, init };

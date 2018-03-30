@@ -28,12 +28,25 @@ import 'custom-properties-parallax';
 
 ## Usage
 
-* Add `data-cpp` attributes to each of the elements that require a parallax effect
+* Add `data-cpp` attributes to each of the elements that require a parallax effect on initialisation
 * Declare any of the following custom properties in the `:root` pseudo-class to override library defaults:
 
-| Name             | Type   | Default  |
-| ---------------- | ------ | -------- |
-| `--cpp-modifier` | Unit   | 0.625rem |
-| `--cpp-speed`    | Number | 0.5      |
+  | Name             | Type   | Default  |
+  | ---------------- | ------ | -------- |
+  | `--cpp-modifier` | Unit   | 0.625rem |
+  | `--cpp-speed`    | Number | 0.5      |
 
-* For further control, leverage the cascade by declaring any of the above custom properties within the CSS selectors of the target elements
+* For individual control, leverage the cascade by declaring any of the above custom properties within the CSS selectors of the target elements. For example:
+
+  ```css
+  h1 {
+    --cpp-speed: 1;
+  }
+  ```
+
+* Use the `create` method to apply the parallax effect to an element after initialisation. For example:
+
+  ```js
+  const h1 = document.querySelector('h1');
+  CustomPropertiesParallax.create(h1);
+  ```

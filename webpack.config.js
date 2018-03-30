@@ -7,7 +7,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
-const packageName = require('./package.json').name;
+const { name } = require('./package.json');
 
 /**
  * Creates an object for maintaining paths throughout the webpack configuration.
@@ -28,8 +28,14 @@ module.exports = ({ development } = false) => ({
     development &&
       new HtmlWebpackPlugin({
         template: path.resolve(paths.src, 'index.html'),
-        title: packageName,
+        title: name,
       }),
   ].filter(Boolean),
-  output: { filename: `${packageName}.js` },
+  output: {
+    filename: `${name}.js`,
+    library: name
+      .split('-')
+      .map(str => `${str.charAt(0).toUpperCase()}${str.slice(1)}`)
+      .join(''), // Converts the package name to uppercase to expose the public methods to.
+  },
 });
