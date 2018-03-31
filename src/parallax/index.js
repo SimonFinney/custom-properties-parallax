@@ -32,7 +32,7 @@ function create(parallaxElement) {
   parallaxElement.style.setProperty(
     'transform',
     `translate3d(0, calc(var(${CUSTOM_PROPERTIES.PARALLAX}) * var(${
-      CUSTOM_PROPERTIES.MODIFIER
+      CUSTOM_PROPERTIES.DISTANCE
     })), 0)`
   );
 

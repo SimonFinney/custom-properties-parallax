@@ -33,7 +33,7 @@ import 'custom-properties-parallax';
 
   | Name             | Type   | Default  |
   | ---------------- | ------ | -------- |
-  | `--cpp-modifier` | Unit   | 0.625rem |
+  | `--cpp-distance` | Unit   | 0.625rem |
   | `--cpp-speed`    | Number | 0.5      |
 
 * For individual control, leverage the cascade by declaring any of the above custom properties within the CSS selectors of the target elements. For example:

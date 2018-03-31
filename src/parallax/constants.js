@@ -4,14 +4,14 @@
  */
 
 const DEFAULT_VALUES = {
-  MODIFIER: '.0625rem',
+  DISTANCE: '.0625rem',
   SPEED: 0.5,
 };
 
 const NAMESPACE = 'cpp';
 
 const CUSTOM_PROPERTIES = {
-  MODIFIER: `--${NAMESPACE}-modifier`,
+  DISTANCE: `--${NAMESPACE}-distance`,
   PARALLAX: `--${NAMESPACE}-parallax`,
   SPEED: `--${NAMESPACE}-speed`,
 };
