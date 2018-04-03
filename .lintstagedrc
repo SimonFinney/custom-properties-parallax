@@ -1,6 +1,7 @@
 { 
   "*.{js,scss}": [
     "yarn format",
-    "yarn test"
+    "yarn test",
+    "git add"
   ]
 }
