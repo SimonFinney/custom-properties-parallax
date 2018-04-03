@@ -3,12 +3,9 @@
  * @author Simon Finney <simonjfinney@gmail.com>
  */
 
-const DEFAULT_VALUES = {
-  DISTANCE: '.0625rem',
-  SPEED: 0.5,
-};
-
 const NAMESPACE = 'cpp';
+
+const ATTRIBUTE = `data-${NAMESPACE}`;
 
 const CUSTOM_PROPERTIES = {
   DISTANCE: `--${NAMESPACE}-distance`,
@@ -16,4 +13,9 @@ const CUSTOM_PROPERTIES = {
   SPEED: `--${NAMESPACE}-speed`,
 };
 
-export { CUSTOM_PROPERTIES, DEFAULT_VALUES, NAMESPACE };
+const DEFAULT_VALUES = {
+  DISTANCE: '.0625rem',
+  SPEED: 0.5,
+};
+
+export { ATTRIBUTE, CUSTOM_PROPERTIES, DEFAULT_VALUES };

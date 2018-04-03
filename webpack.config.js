@@ -3,11 +3,16 @@
  * @author Simon Finney <simonjfinney@gmail.com>
  */
 
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanPlugin = require('clean-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlPlugin = require('html-webpack-plugin');
+
 const path = require('path');
 
 const { name } = require('./package.json');
+
+// Entry point.
+const entry = 'index';
 
 /**
  * Creates an object for maintaining paths throughout the webpack configuration.
@@ -23,19 +28,32 @@ const paths = new function paths() {
  */
 module.exports = ({ development } = false) => ({
   devtool: development && 'cheap-module-eval-source-map',
-  plugins: [
-    new CleanWebpackPlugin([paths.dist]),
-    development &&
-      new HtmlWebpackPlugin({
-        template: path.resolve(paths.src, 'index.html'),
-        title: name,
-      }),
-  ].filter(Boolean),
+  entry: development && [paths.src, path.resolve(paths.src, `${entry}.scss`)],
+  module: {
+    rules: [
+      {
+        test: /\.scss$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'postcss-loader', 'sass-loader'],
+        }),
+      },
+    ],
+  },
   output: {
     filename: `${name}.js`,
     library: name
       .split('-')
       .map(str => `${str.charAt(0).toUpperCase()}${str.slice(1)}`)
-      .join(''), // Converts the package name to uppercase to expose the public methods to.
+      .join(''), // Converts the package name to uppercase to expose public methods from.
   },
+  plugins: [
+    new CleanPlugin([paths.dist]),
+    new ExtractTextPlugin(`${entry}.css`),
+    development &&
+      new HtmlPlugin({
+        template: path.resolve(paths.src, `${entry}.html`),
+        title: name,
+      }),
+  ].filter(Boolean),
 });

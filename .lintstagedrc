@@ -1,6 +1,6 @@
 { 
-  "*.js": [
+  "*.{js,scss}": [
     "yarn format",
     "yarn test"
-    ] 
-  }
+  ]
+}
