@@ -27,43 +27,40 @@ function setDefaultProperty(property) {
  * @param {HTMLElement} parallaxElement The element to attach the parallax handler to.
  */
 function create(parallaxElement) {
-  const w = window;
+  const { style } = parallaxElement;
 
   /**
    * Sets the custom property of the specified element before the next repaint.
    */
   function setParallax() {
-    parallaxElement.style.setProperty(
+    style.setProperty(
       CUSTOM_PROPERTIES.PARALLAX,
       document.documentElement.scrollTop *
-        w
+        window
           .getComputedStyle(parallaxElement)
           .getPropertyValue(CUSTOM_PROPERTIES.SPEED)
     );
 
-    w.requestAnimationFrame(setParallax);
+    requestAnimationFrame(setParallax);
   }
 
-  parallaxElement.style.setProperty(
+  style.setProperty(
     'transform',
     `translate3d(0, calc(var(${CUSTOM_PROPERTIES.PARALLAX}) * var(${
       CUSTOM_PROPERTIES.DISTANCE
     })), 0)`
   );
 
-  parallaxElement.style.setProperty('will-change', 'transform');
+  style.setProperty('will-change', 'transform');
 
-  w.requestAnimationFrame(setParallax);
+  requestAnimationFrame(setParallax);
 }
 
 /**
  * Finds all of the elements declared as parallax elements and creates a parallax handler for each of them.
  */
 function init() {
-  Object.keys(DEFAULT_VALUES).forEach(defaultProperty =>
-    setDefaultProperty(defaultProperty)
-  );
-
+  Object.keys(DEFAULT_VALUES).forEach(setDefaultProperty);
   document.querySelectorAll(`[${ATTRIBUTE}]`).forEach(create);
 }
 
