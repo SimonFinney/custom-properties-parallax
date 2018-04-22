@@ -5,9 +5,23 @@
 
 @import 'normalize.css';
 
+/// Spacing.
+/// @type Length
+$spacing: 1rem;
+
 body {
   display: grid;
+  box-sizing: border-box;
+  max-width: 768px;
+  padding-right: $spacing;
+  padding-left: $spacing;
+  margin-right: auto;
+  margin-left: auto;
   font-family: system-ui, sans-serif;
-  grid-gap: 1rem;
+  grid-gap: $spacing;
   grid-template-columns: 2fr 1fr;
+}
+
+img {
+  max-width: 100%;
 }

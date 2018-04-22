@@ -4,9 +4,9 @@
   "description": "Parallax effect using custom properties",
   "main": "dist/custom-properties-parallax.js",
   "scripts": {
-    "commitmsg": "commitlint -e $GIT_PARAMS",
     "build": "webpack --mode production",
-    "format": "prettier '**/*.{js,scss}' --write",
+    "commitmsg": "commitlint -e $GIT_PARAMS",
+    "format": "prettier '**/*.{js,scss}' --ignore-path .gitignore --write",
     "lint": "yarn lint:js && yarn lint:scss",
     "lint:js": "eslint '**/*.js' --ignore-path .gitignore",
     "lint:scss": "stylelint '**/*.scss' --ignore-path .gitignore",
