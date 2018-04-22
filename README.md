@@ -8,7 +8,7 @@ Parallax effect using custom properties - Inspired by [Cheapass Parallax - daver
 
 ```bash
 # npm
-npm install custom-properties-parallax --save
+npm i custom-properties-parallax --save
 
 # Yarn
 yarn add custom-properties-parallax
